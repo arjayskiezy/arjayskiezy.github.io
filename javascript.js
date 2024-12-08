@@ -17,10 +17,8 @@ function saveInput() {
         return;
     }
 
-    // Google Apps Script Web App URL
-    const googleScriptURL = "https://script.google.com/macros/s/AKfycbykdaWzGqE-kpGlNWkuAh0hxFpY0a9yRrPu_wRaQ7YFJefkXBmqPoiN4gl9CLlpjBzt6A/exec";
+    const googleScriptURL = "https://script.google.com/macros/s/AKfycbyyLG7Sh0AkG9CQZv4WaeuuyjmdSaTQxTsvVdhUco1TvQTugID9QIBBq7lYU0dc8yiazg/exec"; // Correct URL
 
-    // Send the data to the Google Sheet
     fetch(googleScriptURL, {
         method: 'POST',
         headers: {
@@ -54,6 +52,7 @@ function saveInput() {
 
     closeModal();
 }
+
 
 // Open the Comment modal
 function openCommentBox() {
