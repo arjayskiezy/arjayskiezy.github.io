@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noreen Ashley C. Noval</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <h1 class="text-center text-3xl text-red-600 font-bold">Science, Technology, and Society</h1>
+    <h2 class="text-center text-lg text-gray-600">Psychology Department</h2>
+
+    <div class="video-container mt-8 mx-auto w-4/5 bg-white p-5 shadow-lg rounded-lg">
+        <!-- Local Video -->
+        <video controls class="w-full rounded-md">
+            <source src="video.mp4" type="video/mp4">
+            <source src="video.ogg" type="video/ogg">
+            <p>Your browser does not support HTML video.</p>
+        </video>
+
+        <!-- Like, Comment, Share Buttons -->
+        <div class="actions mt-4 flex justify-around">
+            <button onclick="openModal()" class="px-6 py-2 bg-red-500 text-white rounded-full hover:bg-red-600">
+                Like 👍
+            </button>
+            <button onclick="openCommentBox()" class="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">
+                Comment 💬
+            </button>
+            <button onclick="shareVideo()" class="px-6 py-2 bg-green-500 text-white rounded-full hover:bg-green-600">
+                Share 🔗
+            </button>
+        </div>
+
+        <!-- Comments Section -->
+        <div id="comments-section" class="comments-section mt-8">
+            <h3 class="text-lg font-bold">Comments</h3>
+            <div id="comment-list" class="mt-4">
+                <div class="comment flex mb-4">
+                    <img src="./User/dale.png" alt="User Avatar" class="avatar w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <div class="font-bold">Dale Noval</div>
+                        <div class="text-gray-700">This video is so informative! 😊</div>
+                    </div>
+                </div>
+                <div class="comment flex mb-4">
+                    <img src="./User/tony.png" alt="User Avatar" class="avatar w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <div class="font-bold">Anthony Catacutan</div>
+                        <div class="text-gray-700">Good 👌</div>
+                    </div>
+                </div>
+                <div class="comment flex mb-4">
+                    <img src="./User/frits.png" alt="User Avatar" class="avatar w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <div class="font-bold">Fritz Lavon</div>
+                        <div class="text-gray-700">I love how detailed and clear the explanations are. Keep it up! 👍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="like-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-6 w-96 rounded-lg shadow-lg">
+                <h3 class="text-lg font-bold mb-4">Enter Your Details</h3>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your email">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your password">
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
+                    <button onclick="saveInput()" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comment Box -->
+        <div id="comment-box" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-6 w-96 rounded-lg shadow-lg">
+                <h3 class="text-lg font-bold mb-4">Add a Comment</h3>
+                <textarea id="new-comment" class="w-full h-24 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write your comment here..."></textarea>
+                <div class="flex justify-end space-x-4 mt-4">
+                    <button onclick="closeCommentBox()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
+                    <button onclick="saveComment()" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript.js"></script>
+</body>
+</html>
