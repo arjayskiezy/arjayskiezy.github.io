@@ -10,16 +10,23 @@
     <h1 class="text-center text-3xl text-red-600 font-bold">Science, Technology, and Society</h1>
     <h2 class="text-center text-lg text-gray-600">Psychology Department</h2>
 
-    <div class="video-container mt-8 mx-auto w-4/5 bg-white p-5 shadow-lg rounded-lg">
-        <!-- Local Video -->
+    <div class="content-container mt-8 mx-auto w-4/5 bg-white p-5 shadow-lg rounded-lg">
+        <!-- Image Section -->
+        <h3 class="text-lg font-bold mb-4 text-center">Gallery</h3>
+        <div class="image-gallery grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <img src="./Pics/1.jpg" alt="Image 1" class="rounded-lg shadow-md">
+            <img src="./Pics/2.jpg" alt="Image 2" class="rounded-lg shadow-md">
+        </div>
+
+        <!-- Video Section -->
+        <h3 class="text-lg font-bold mb-4 text-center">Video Presentation</h3>
         <video controls class="w-full rounded-md">
-            <source src="video.mp4" type="video/mp4">
-            <source src="video.ogg" type="video/ogg">
+            <source src="./Pics/vid.mp4" type="video/mp4">
             <p>Your browser does not support HTML video.</p>
         </video>
 
         <!-- Like, Comment, Share Buttons -->
-        <div class="actions mt-4 flex justify-around">
+        <div class="actions mt-8 flex justify-around">
             <button onclick="openModal()" class="px-6 py-2 bg-red-500 text-white rounded-full hover:bg-red-600">
                 Like 👍
             </button>
