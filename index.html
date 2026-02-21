@@ -1,325 +1,219 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SABRE SPECIAL OPERATIONS GROUP | SSOG</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolind Joric Alanano | Software Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Oswald:wght@500;700&family=JetBrains+Mono&display=swap");
+        /* --- Design Tokens --- */
+        :root[data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --subtext: #4a4a4a;
+            --card-bg: #fcfcfc;
+            --border: #e0e0e0;
+            --accent: #000000;
+            --tag-bg: #f0f0f0;
+        }
 
-      :root {
-        --sabre-red: #e1062e;
-      }
+        :root[data-theme="dark"] {
+            --bg: #0d0d0d;
+            --text: #f0f0f0;
+            --subtext: #999999;
+            --card-bg: #151515;
+            --border: #222222;
+            --accent: #ffffff;
+            --tag-bg: #1a1a1a;
+        }
 
-      body {
-        background:
-          linear-gradient(rgba(8, 8, 8, 0.85), rgba(8, 8, 8, 0.95)),
-          url("Messenger_creation_A9EAA498-E124-4B83-AA11-AFC435415359.webp");
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-        color: #d1d5db;
-        font-family: "Inter", sans-serif;
-      }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.4s ease, color 0.4s ease; }
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; overflow-x: hidden; line-height: 1.6; }
 
-      .mil-font {
-        font-family: "Oswald", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-      .mono {
-        font-family: "JetBrains Mono", monospace;
-      }
+        /* --- Theme Toggle --- */
+        .theme-switch-wrapper { position: fixed; top: 25px; right: 25px; z-index: 1000; display: flex; align-items: center; }
+        .theme-switch { display: inline-block; height: 30px; position: relative; width: 55px; }
+        .theme-switch input { display:none; }
+        .slider { background-color: #ddd; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; border: 1px solid var(--border); }
+        .slider:before { background-color: white; bottom: 3px; content: ""; height: 22px; left: 4px; position: absolute; transition: .4s; width: 22px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        input:checked + .slider { background-color: #333; }
+        input:checked + .slider:before { transform: translateX(25px); }
 
-      .btn-tactical {
-        position: relative;
-        padding: 1rem 2.5rem;
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.875rem;
-        font-weight: 700;
-        transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
-        clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-        overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
+        /* --- Layout & Navigation --- */
+        .nav-bar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(var(--bg), 0.8); backdrop-filter: blur(10px); padding: 12px 24px; border-radius: 100px; border: 1px solid var(--border); z-index: 1000; display: flex; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .nav-bar a { text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; }
 
-      .btn-tactical::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: 0.5s;
-      }
-
-      .btn-tactical:hover::before {
-        left: 100%;
-      }
-
-      .btn-tactical:hover {
-        transform: skewX(-2deg) scale(1.05);
-        box-shadow: 0 0 20px rgba(225, 6, 46, 0.4);
-      }
-
-      .btn-primary {
-        background: var(--sabre-red);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        border: 1px solid var(--sabre-red);
-      }
-
-      .btn-secondary:hover {
-        background: var(--sabre-red);
-      }
-
-      .btn-discord {
-        background: #5865F2;
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .hero-bg {
-        background: 
-                linear-gradient(rgba(8, 8, 8, 0.7), rgba(8, 8, 8, 1)), 
-                url('Messenger_creation_A9EAA498-E124-4B83-AA11-AFC435415359.webp');
-            background-size: cover;
-            background-position: center;
-      }
-
-      .border-red { border-color: var(--sabre-red); }
-      .text-red { color: var(--sabre-red); }
-      .bg-red { background-color: var(--sabre-red); }
-
-      .scanline {
-        width: 100%;
-        height: 5px;
-        background: rgba(225, 6, 46, 0.1);
-        position: fixed;
-        z-index: 100;
-        pointer-events: none;
-        animation: scan 4s linear infinite;
-      }
-
-      @keyframes scan {
-        0% { top: 0; }
-        100% { top: 100%; }
-      }
-    </style>
-  </head>
-  <body class="antialiased">
-    <div class="scanline"></div>
-
-<!-- 
-    <div class="w-full bg-red py-1 px-6 flex justify-between items-center text-[10px] font-bold text-white uppercase tracking-[0.3em]">
-      <span>Status: Operational</span>
-      <span class="animate-pulse">● System Connection: Secure</span>
-      <span>Auth: PHSOCOM-T1</span>
-    </div> -->
-
-    <nav class="sticky top-0 z-50 bg-black/90 border-b border-zinc-800 backdrop-blur-lg">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+        .container { max-width: 1100px; margin: 0 auto; padding: 120px 24px; }
         
-        <div class="flex items-center">
-        <img 
-            src="TF_Sabre_Rebrand_Ribbon.webp" 
-            alt="SABRECOM Logo" 
-            class="h-10 md:h-12 w-auto object-contain"
-        />
-        </div>
+        /* --- Animations --- */
+        .reveal { opacity: 0; transform: translateY(25px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        <div class="flex gap-8 text-[11px] mil-font tracking-widest items-center">
-        <a href="#history" class="hover:text-red transition">Briefing</a>
-        <a href="#capabilities" class="hover:text-red transition">Capabilities</a>
-        <a href="#media" class="hover:text-red transition">Gallery</a>
-        <a href="https://units.arma3.com/unit/sabregroup" class="text-red border-l border-red pl-4 hover:text-white transition">Arma 3 Unit</a>
-        </div>
+        /* --- Header / Hero Section --- */
+        .hero-flex { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        
+        .profile-box { 
+            width: 180px; 
+            height: 180px; 
+            border-radius: 24px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--border);
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* grayscale(1) matches the monochromatic progressive theme */
+            /* filter: grayscale(1);  */
+            transition: 0.3s;
+        }
+        
+        .profile-box img:hover { filter: grayscale(0); }
+
+        .hero-text h1 { font-size: 4rem; font-weight: 700; letter-spacing: -2px; line-height: 0.9; margin-bottom: 15px; }
+        .social-links { display: flex; gap: 15px; margin-top: 15px; }
+        .social-links a { font-size: 0.85rem; color: var(--subtext); text-decoration: underline; }
+
+        .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px; color: var(--subtext); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+        /* --- Grid & Cards --- */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .card { padding: 40px; border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .card p { color: var(--subtext); font-size: 0.9rem; margin-bottom: 20px; }
+        .tech-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { padding: 4px 10px; background: var(--tag-bg); border-radius: 4px; font-size: 0.7rem; font-weight: 600; border: 1px solid var(--border); }
+
+        .research-box { margin-top: 40px; padding: 30px; border-left: 3px solid var(--text); background: var(--card-bg); }
+        .research-box li { font-size: 0.9rem; margin-bottom: 5px; color: var(--subtext); list-style: none; }
+
+        footer { margin-top: 80px; text-align: center; color: var(--subtext); font-size: 0.75rem; }
+
+        @media (max-width: 768px) {
+            .hero-flex { flex-direction: column; text-align: center; gap: 20px; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .grid { grid-template-columns: 1fr; }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider"></div>
+        </label>
     </div>
+
+    <nav class="nav-bar">
+        <a href="#projects">Work</a>
+        <a href="#research">Research</a>
+        <a href="https://github.com/arjayskiezy" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/rolind-joric-alanano-1752152a4" target="_blank">LinkedIn</a>
     </nav>
 
-    <header class="hero-bg py-24 md:py-40 text-center px-6">
-      <h2 class="text-red mil-font text-sm font-bold tracking-[0.5em] mb-4">
-        Classified Document // No. 044-SSOG
-      </h2>
-      <h1 class="text-5xl md:text-8xl font-black mil-font mb-6 leading-none">
-        SABRE SPECIAL<br />OPERATIONS GROUP
-      </h1>
-      <p class="max-w-3xl mx-auto text-zinc-400 text-lg md:text-xl font-light mb-10 leading-relaxed">
-        The premiere <span class="text-white font-bold">Tier 1 Special Mission Unit</span> of
-        the Philippines. Assigned as the first overseas deployment group under
-        the Armed Forces of the Philippines Special Operations Command.
-      </p>
-      
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#" class="btn-tactical btn-discord">
-          <i class="fab fa-discord mr-3 text-lg"></i> Access Discord HQ
-        </a>
-        <a href="#history" class="btn-tactical btn-secondary">
-          <i class="fas fa-file-alt mr-3"></i> Mission Intel
-        </a>
-      </div>
-    </header>
+    <main class="container">
+        <header class="hero-flex reveal">
+            <div class="profile-box">
+                <img src="profile.jpg" alt="Rolind Joric Alanano">
+            </div>
+            <div class="hero-text">
+                <h1>Rolind Joric <br>Alanano.</h1>
+                <p style="max-width: 600px; margin-top: 10px;">
+                    Full-Stack Developer & CS Student @ <strong>NORSU</strong>.
+                    Building IoT solutions and research-driven web architectures.
+                </p>
+                <div class="social-links">
+                    <a href="https://github.com/arjayskiezy">GitHub</a>
+                    <a href="https://www.linkedin.com/in/rolind-joric-alanano-1752152a4">LinkedIn</a>
+                    <a href="https://drive.google.com/drive/folders/16_H3rvW5X86r134TNPo91qqV-rr0SfM7?usp=sharing" target="_blank">Drive Folder</a>
+                </div>
+            </div>
+        </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
-      <section id="history" class="grid lg:grid-cols-2 gap-16 mb-32">
-        <div class="space-y-6">
-          <div class="inline-block bg-red text-white text-[10px] mil-font px-2 py-1 mb-2">
-            Unit Origins
-          </div>
-          <h3 class="text-4xl mil-font font-bold text-white">SABRECOM Evolution</h3>
-          <p class="text-zinc-400 leading-relaxed">
-            Formerly known as <span class="text-white font-semibold">Task Force Sabre</span>, the
-            SSOG has evolved into a powerhouse of unconventional warfare. Now
-            established as a regiment under SABRECOM, it stands as the
-            Philippines' spearhead for global intervention.
-          </p>
-          <p class="text-zinc-400 leading-relaxed">
-            Operating alongside the <span class="text-red font-semibold">Light Reaction Regiment</span>,
-            SSOG is tasked with the most complex, classified, and dangerous
-            missions directed by PHSOCOM. Due to the sensitive nature of their
-            work, details of their activities are rarely commented on by the
-            <span class="text-white">SOCOM</span> or
-            <span class="text-white">Department of National Defense (DND)</span>.
-          </p>
-          <div class="bg-zinc-900/80 border-l-4 border-red p-6 italic text-sm text-zinc-300 font-light">
-            "The unit has been deployed to various hot combat zones around the
-            globe to gain experience in modern warfare, ensuring the AFP remains
-            a lethal force on the international stage."
-          </div>
-        </div>
+        <h2 class="section-title" id="projects">Selected Projects</h2>
+        <div class="grid">
+            <section class="card reveal">
+                <h3>GripoMeter / Digital Water Billing</h3>
+                <p>Full-stack ecosystem for Zamboanguita Waterworks: automated billing & real-time monitoring.</p>
+                <div class="tech-list">
+                    <span class="tag">Symfony</span><span class="tag">React</span><span class="tag">Flutter</span><span class="tag">JWT</span>
+                </div>
+            </section>
 
-        <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-sm relative overflow-hidden">
-    <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl text-red">
-        <i class="fas fa-user-secret"></i>
-    </div>
-    <h4 class="mil-font text-xl text-white mb-6 border-b border-zinc-800 pb-4">Training Lineage</h4>
-    
-    <div class="space-y-4 mb-8">
-        <div class="flex justify-between items-center border-b border-zinc-800/50 pb-2">
-        <span class="text-xs mil-font tracking-widest">US Naval Special Warfare</span>
-        <span class="text-red font-bold mono">DEVGRU</span>
-        </div>
-        <div class="flex justify-between items-center border-b border-zinc-800/50 pb-2">
-        <span class="text-xs mil-font tracking-widest">Army Special Forces (USA)</span>
-        <span class="text-red font-bold mono">SFOD-D</span>
-        </div>
-        <div class="flex justify-between items-center border-b border-zinc-800/50 pb-2">
-        <span class="text-xs mil-font tracking-widest">United Kingdom SF</span>
-        <span class="text-red font-bold mono">UKSF</span>
-        </div>
-        <div class="flex justify-between items-center border-b border-zinc-800/50 pb-2">
-        <span class="text-xs mil-font tracking-widest">Special Air Service</span>
-        <span class="text-red font-bold mono">UKSAS</span>
-        </div>
-    </div>
+            <section class="card reveal">
+                <h3>Campus Connect</h3>
+                <p>Project Leader for a centralized student guild portal for collaboration and resource sharing.</p>
+                <div class="tech-list">
+                    <span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">Tailwind</span>
+                </div>
+            </section>
 
-    <div class="grid grid-cols-2 gap-4">
-        <div class="relative aspect-video bg-black border border-zinc-800 overflow-hidden group">
-        <img src="https://via.placeholder.com/400x225/080808/E1062E?text=INTEL_PHOTO_A" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500">
-        <div class="absolute bottom-0 left-0 bg-red text-white text-[8px] px-2 py-0.5 mil-font uppercase">Joint_Ex_01</div>
-        </div>
-        <div class="relative aspect-video bg-black border border-zinc-800 overflow-hidden group">
-        <img src="https://via.placeholder.com/400x225/080808/E1062E?text=INTEL_PHOTO_B" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500">
-        <div class="absolute bottom-0 left-0 bg-red text-white text-[8px] px-2 py-0.5 mil-font uppercase">Naval_Ops_04</div>
-        </div>
-    </div>
-</div>
-      </section>
+            <section class="card reveal">
+                <h3>IoT Banking System</h3>
+                <p>Real-time banking simulation using WebSockets and token-based security protocols.</p>
+                <div class="tech-list">
+                    <span class="tag">C++</span><span class="tag">WebSockets</span><span class="tag">IoT</span>
+                </div>
+            </section>
 
-      <section id="capabilities" class="mb-32">
-        <div class="text-center mb-16">
-          <h3 class="text-3xl mil-font font-bold text-white">Full-Spectrum Capabilities</h3>
-          <div class="w-24 h-1 bg-red mx-auto mt-4"></div>
+            <section class="card reveal">
+                <h3>Sabre Armory</h3>
+                <p>Digital shop and booking system designed for tactical gear service management.</p>
+                <div class="tech-list">
+                    <span class="tag">Web Dev</span><span class="tag">E-commerce</span>
+                </div>
+            </section>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="capability-card bg-zinc-900 border border-zinc-800 p-6 transition duration-300">
-            <i class="fas fa-crosshairs text-red text-2xl mb-4"></i>
-            <h4 class="mil-font text-white font-bold mb-3">Direct Action & Raids</h4>
-            <ul class="text-xs space-y-2 text-zinc-500 mono">
-              <li>> HVT_RAID_OPS</li>
-              <li>> SABOTAGE_TACTICS</li>
-              <li>> HOSTAGE_RESCUE</li>
-              <li>> ANTI_HIJACKING</li>
+        <h2 class="section-title" id="research" style="margin-top: 60px;">Technical Research</h2>
+        <section class="research-box reveal">
+            <h3>Algorithms & Data Science</h3>
+            <p>strengthening analytical thinking through modern AI methodologies.</p>
+            <ul>
+                <li>• Association Rule Mining & Clustering</li>
+                <li>• Sentiment Analysis & Forecasting</li>
+                <li>• Computer Vision Image Classification</li>
             </ul>
-          </div>
-          <div class="capability-card bg-zinc-900 border border-zinc-800 p-6 transition duration-300">
-            <i class="fas fa-tree text-red text-2xl mb-4"></i>
-            <h4 class="mil-font text-white font-bold mb-3">Environmental Ops</h4>
-            <ul class="text-xs space-y-2 text-zinc-500 mono">
-              <li>> JUNGLE_WARFARE</li>
-              <li>> MOUT_URBAN_TERRAIN</li>
-              <li>> UNCONVENTIONAL_WAR</li>
-              <li>> RAIDING_OPERATIONS</li>
-            </ul>
-          </div>
-          <div class="capability-card bg-zinc-900 border border-zinc-800 p-6 transition duration-300">
-            <i class="fas fa-shield-virus text-red text-2xl mb-4"></i>
-            <h4 class="mil-font text-white font-bold mb-3">Counter-Operations</h4>
-            <ul class="text-xs space-y-2 text-zinc-500 mono">
-              <li>> COUNTER_INSURGENCY</li>
-              <li>> COUNTER_NARCOTICS</li>
-              <li>> SPECIAL_RECON</li>
-              <li>> FOREIGN_INTERNAL_DEF</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="media" class="mb-32 text-center">
-        <h3 class="text-3xl mil-font font-bold text-white mb-10">Visual Intelligence</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="aspect-square bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xs text-zinc-600">Picture ni Jamal</div>
-          <div class="aspect-square bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xs text-zinc-600">Picture ni Jamal</div>
-          <div class="aspect-square bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xs text-zinc-600">Picture ni Jamal</div>
-          <div class="aspect-square bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xs text-zinc-600">Picture ni Jamal</div>
-        </div>
-      </section>
+        <footer>
+            <p>09628865466 • arjay.alanano23@gmail.com</p>
+            <p style="margin-top: 10px;">© 2026 Rolind Joric Alanano.</p>
+        </footer>
     </main>
 
-    <footer class="bg-black py-16 px-6 border-t border-zinc-900">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        
-        <div class="flex flex-col items-center md:items-start">
-        <img 
-            src="TF_Sabre_Rebrand_Ribbon.webp" 
-            alt="SABRECOM Logo" 
-            class="h-20 md:h-20 w-auto object-contain mb-2"
-        />
-        <!-- <p class="text-[10px] text-zinc-600 mono uppercase tracking-widest">PHSOCOM TIER 1 SMU</p> -->
-        </div>
+    <script>
+        const toggleSwitch = document.querySelector('#checkbox');
+        const currentTheme = localStorage.getItem('theme');
 
-        <div class="flex gap-6">
-        <a href="https://www.youtube.com/channel/UCdCDe6hiqRWjNGBjLDjrVkg" class="text-zinc-500 hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
-        <a href="https://www.facebook.com/PHSOG1" class="text-zinc-500 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
-        <a href="https://www.instagram.com/sabresog/" class="text-zinc-500 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
-        </div>
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') toggleSwitch.checked = true;
+        }
 
-        <div class="text-center md:text-right">
-        <a href="https://units.arma3.com/unit/sabregroup" class="btn-tactical btn-primary px-6 py-2 text-xs">Unit Portal</a>
-        <p class="text-[9px] text-zinc-800 mt-4 italic">© 2026 SSOG FICTIONAL MILITARY ENTITY</p>
-        </div>
-    </div>
-    </footer>
-  </body>
+        toggleSwitch.addEventListener('change', (e) => {
+            document.documentElement.setAttribute('data-theme', e.target.checked ? 'dark' : 'light');
+            localStorage.setItem('theme', e.target.checked ? 'dark' : 'light');
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
 </html>
